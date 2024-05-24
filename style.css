@@ -1,0 +1,10 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.svgPlay{
+    display: none;
+}
+.div-songlist:hover .svgPlay{
+    display: block;
+}
