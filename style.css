@@ -27,6 +27,10 @@ body{
     background-color: #232323;
    
 }
+.div-inputSong form{
+    background-color: #232323;
+   
+}
 .div-wrapper{
     background-color: #4F4F4F ;
 }
@@ -50,4 +54,8 @@ body{
 .Top-Songs-Global{
     background-color:  #282828;
     color: #515151;
+}
+#status{
+    height: 20px;
+    background-color: red;
 }

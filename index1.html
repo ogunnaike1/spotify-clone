@@ -64,7 +64,6 @@
         <input id="inputArtist" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
         <input id="inputPlays" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
         <input id="inputAlbum" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
-        <input class="p-3" type="file" id="fileInput" accept="image/*">
         <button onclick="addPlaylist()" class="bg-red-500 h-[40px] mt-[10px]">Add to playlist</button>
 
     </div>
@@ -109,6 +108,11 @@
                 <input id="inputArtist" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
                 <input id="inputPlays" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
                 <input id="inputAlbum" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
+                <form class="border" id="uploadForm">
+                    <input class="w-[80%]" type="file" id="fileInput" accept="image/*">
+                    <button type="submit">Upload Image</button>
+                </form>
+                
                 <button onclick="addPlaylist()" class="bg-red-500 h-[40px] mt-[10px]">Add to playlist</button>
 
             </div>
@@ -178,15 +182,106 @@
                 <div class="div-line bg-white h-[1px] mt-[5px] mb-[10px]"></div>
     
                <div id="showPlaylistDiv" class="div-playlist-option rounded-[5px]">
-                <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
-                    <span class="w-[2%]">1</span>
+
+    
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    let fileInput = document.getElementById('fileInput');
+    let file = fileInput.files[0]; 
+    if (file) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let imagePreview = document.getElementById('status');
+            imagePreview.innerHTML = ''; 
+            let imgElement = document.createElement('img');
+            imgElement.src = e.target.result;
+            imgElement.alt = 'Uploaded Image';
+            imgElement.style.maxWidth = '100%';
+            imagePreview.appendChild(imgElement);
+            imagePreview.hidden = false;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        alert('Please select a file to display.');
+    }
+});
+
+
+
+function addPlaylist(){
+    let status = document.getElementById('status');
+    status.style.display ='block'
+}
+
+let allPlayList =[];
+    function addPlaylist(){
+        let playListObj = {
+            songTitle: inputSongTitle.value,
+            artist : inputArtist.value,
+            plays : inputPlays.value,
+            album :inputAlbum.value
+        }
+        
+        if(inputSongTitle.value === '' || inputArtist.value === '' || inputPlays.value === '' || inputAlbum.value === '' ){
+        error.style.display ='block'
+    }else{
+        error.style.display ='none'
+        allPlayList.push(playListObj);
+        showPlaylist()
+        inputSongTitle.value = ''
+        inputArtist.value = ''
+        inputPlays.value = ''
+        inputAlbum.value = ''
+    } 
+
+    }
+
+    function deletesong(index){
+        allPlayList.splice(index, 1)
+        showPlaylist()
+
+    }
+    // function playMusic(){
+    //     let playsong = new Audio("Brymo - Ọlánrewájú.mp3")
+    //     playsong.play()
+    // }
+
+    function showPlaylist(){
+    showPlaylistDiv.innerHTML = ''
+    for(let i = 0; i < allPlayList.length; i++){
+        showPlaylistDiv.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
+                <span class="w-[2%]">${i + 1}</span>
+                <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                  </svg>
+                  </button>
+                <div class="flex items-center w-[40%] ml-[15px]">
+                    <img class="h-[35px] rounded-[5px]" src="./image/snow.jpg" alt="">
+                    <div class="flex flex-col ml-[10px] leading-5">
+                        <span class="font-[600] text-[18px]">${allPlayList[i].songTitle}</span>
+                        <span>${allPlayList[i].artist}</span>
+                    </div>
+                </div>
+                <span class="w-[25%] ml-[20px]">${allPlayList[i].plays}</span>
+                <span class="w-[28%]">${allPlayList[i].album}</span>
+                <button class="" onclick="deletesong(${i})">Delete</button>
+            </div>
+            <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
+                    <span class="w-[2%]">${i + 1}</span>
                     <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
                       </svg>
                       </button>
                     <div class="flex items-center sm:w-[40%] w-[80%] ml-[15px]">
-                        <img class="h-[35px] rounded-[5px]" src="./image/snow.jpg" alt="">
+                        <div class="w-[40px] h-[40px] rounded-[5px]" id="status" style="display:none;"></div>
                         <div class="flex flex-col ml-[10px] leading-5 sm:block hidden">
                             <span class="font-[600] text-[15px] sm:text-[18px]">ogunnnsike</span>
                             <span>usman</span>
@@ -199,12 +294,11 @@
                     <span class="w-[25%] ml-[20px] sm:block hidden">arysk</span>
                     <span class="w-[28%] sm:block hidden">arya song</span>
                     <button class="">Delete</button>
-                </div>
-    
-               </div>
-            </div>
-        </div>
-    </div>
+                </div>`;
+    }
+}
+
+    </script>
 
 
     
