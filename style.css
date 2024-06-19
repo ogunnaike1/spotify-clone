@@ -27,7 +27,23 @@ body{
     background-color: #232323;
    
 }
-.div-myPlaylist {
+.div-wrapper{
     background-color: #4F4F4F ;
-    #202020
+}
+.div-myPlaylist {
+    background-color:#202020;
+    
+    
+}
+.div-playlist{
+    background-color: #202020;
+
+}
+.div-playlist-option {
+    background-color:#141414 ;
+   
+}
+.Top-Songs-Global{
+    background-color:  #282828;
+    color: #515151;
 }
