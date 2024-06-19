@@ -41,7 +41,11 @@ body{
 }
 .div-playlist-option {
     background-color:#141414 ;
+    color: white;
    
+}
+.div-playlist-option:hover{
+    opacity: 0.5;
 }
 .Top-Songs-Global{
     background-color:  #282828;
