@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./style.css">
-  <link href="./output.css" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 </head>
 <body>
 <nav class="bg-black border border-gray-200 dark:border-gray-700 px-2 md:hidden sm:px-4 py-2.5 rounded dark:bg-gray-800 shadow">
@@ -23,7 +26,6 @@
           class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
         >
           <span class="sr-only">Open main menu</span>
-          <!-- Hamburger icon -->
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               stroke-linecap="round"
@@ -59,27 +61,18 @@
     </div>
 
     <div class="div-inputSong text-[17px] h-[70vh] mt-[5px] font-[700] text-white flex  mx-auto flex-col w-[95%] rounded-[10px]">
-        <div id="error" class="animate__animated animate__shakeX animate__infinite" style="display: none;">Please fill the empty space</div>
-        <input id="inputSongTitle" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
-        <input id="inputArtist" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
-        <input id="inputPlays" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
-        <input id="inputAlbum" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
-        <button onclick="addPlaylist()" class="bg-red-500 h-[40px] mt-[10px]">Add to playlist</button>
+        <div id="errorTwo" class="animate__animated animate__shakeX animate__infinite" style="display: none;">Please fill the empty space</div>
+        <input id="inputSongTitleTwo" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
+        <input id="inputArtistTwo" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
+        <input id="inputPlaysTwo" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
+        <input id="inputAlbumTwo" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
+        <button onclick="addPlaylistTwo()" class="bg-red-500 h-[40px] mt-[10px]">Add to playlist</button>
 
     </div>
       </div>
   
     </div>
   </nav>
-  
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-  
-    menuToggle.addEventListener('click', function () {
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
 
     <div class="div-drid grid lg:grid-cols-12 md:grid-cols-12 ">
         <div class="lg:col-span-3 md:col-span-4 sm:hidden md:block sm:block hidden" >
@@ -110,7 +103,7 @@
                 <input id="inputAlbum" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
                 <form class="border" id="uploadForm">
                     <input class="w-[80%]" type="file" id="fileInput" accept="image/*">
-                    <button type="submit">Upload Image</button>
+                    <button onclick="addImage()">Upload Image</button>
                 </form>
                 
                 <button onclick="addPlaylist()" class="bg-red-500 h-[40px] mt-[10px]">Add to playlist</button>
@@ -182,42 +175,44 @@
                 <div class="div-line bg-white h-[1px] mt-[5px] mb-[10px]"></div>
     
                <div id="showPlaylistDiv" class="div-playlist-option rounded-[5px]">
-
-    
+                <div id="imageStatus" hidden></div>
+                
                </div>
             </div>
         </div>
     </div>
 
     <script>
-document.getElementById('uploadForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    let fileInput = document.getElementById('fileInput');
-    let file = fileInput.files[0]; 
-    if (file) {
-        let reader = new FileReader();
-        reader.onload = function(e) {
-            let imagePreview = document.getElementById('status');
-            imagePreview.innerHTML = ''; 
-            let imgElement = document.createElement('img');
-            imgElement.src = e.target.result;
-            imgElement.alt = 'Uploaded Image';
-            imgElement.style.maxWidth = '100%';
-            imagePreview.appendChild(imgElement);
-            imagePreview.hidden = false;
-        };
-        reader.readAsDataURL(file);
-    } else {
-        alert('Please select a file to display.');
-    }
-});
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+  
+    menuToggle.addEventListener('click', function () {
+      mobileMenu.classList.toggle('hidden');
+    });
 
 
+// document.getElementById('uploadForm').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     let fileInput = document.getElementById('fileInput');
+//     let file = fileInput.files[0]; 
+//     if (file) {
+//         let reader = new FileReader();
+//         reader.onload = function(e) {
+//             let imagePreview = document.getElementById('imageStatus');
+//             imagePreview.innerHTML = ''; 
+//             let imgElement = document.createElement('img');
+//             imgElement.src = e.target.result;
+//             imgElement.alt = 'Uploaded Image';
+//             imgElement.style.maxWidth = '100%';
+//             imagePreview.appendChild(imgElement);
+//             imagePreview.hidden = false;
+//         };
+//         reader.readAsDataURL(file);
+//     } else {
+//         alert('Please select a file to display.');
+//     }
+// });
 
-function addPlaylist(){
-    let status = document.getElementById('status');
-    status.style.display ='block'
-}
 
 let allPlayList =[];
     function addPlaylist(){
@@ -225,8 +220,22 @@ let allPlayList =[];
             songTitle: inputSongTitle.value,
             artist : inputArtist.value,
             plays : inputPlays.value,
-            album :inputAlbum.value
+            album :inputAlbum.value,
+            imageView : imageStatus.innerHTML
         }
+
+        let fileInputs = document.querySelectorAll('.fileInput');
+        fileInputs.forEach(fileInput => {
+            let file = fileInput.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    playListObj.images.push(e.target.result);
+                    showPlaylist(); // Update playlist display
+                };
+                reader.readAsDataURL(file);
+            }
+        });
         
         if(inputSongTitle.value === '' || inputArtist.value === '' || inputPlays.value === '' || inputAlbum.value === '' ){
         error.style.display ='block'
@@ -247,6 +256,15 @@ let allPlayList =[];
         showPlaylist()
 
     }
+    function playMusic(){
+        let playsong = new Audio("Brymo - Ọlánrewájú.mp3")
+        playsong.play()
+    }
+
+    let imageStatus = document.getElementById('imageStatus');
+    imageStatus.style.display ='block'
+
+
     // function playMusic(){
     //     let playsong = new Audio("Brymo - Ọlánrewájú.mp3")
     //     playsong.play()
@@ -256,24 +274,6 @@ let allPlayList =[];
     showPlaylistDiv.innerHTML = ''
     for(let i = 0; i < allPlayList.length; i++){
         showPlaylistDiv.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
-                <span class="w-[2%]">${i + 1}</span>
-                <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-                  </svg>
-                  </button>
-                <div class="flex items-center w-[40%] ml-[15px]">
-                    <img class="h-[35px] rounded-[5px]" src="./image/snow.jpg" alt="">
-                    <div class="flex flex-col ml-[10px] leading-5">
-                        <span class="font-[600] text-[18px]">${allPlayList[i].songTitle}</span>
-                        <span>${allPlayList[i].artist}</span>
-                    </div>
-                </div>
-                <span class="w-[25%] ml-[20px]">${allPlayList[i].plays}</span>
-                <span class="w-[28%]">${allPlayList[i].album}</span>
-                <button class="" onclick="deletesong(${i})">Delete</button>
-            </div>
-            <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
                     <span class="w-[2%]">${i + 1}</span>
                     <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
@@ -281,19 +281,19 @@ let allPlayList =[];
                       </svg>
                       </button>
                     <div class="flex items-center sm:w-[40%] w-[80%] ml-[15px]">
-                        <div class="w-[40px] h-[40px] rounded-[5px]" id="status" style="display:none;"></div>
+                        <div class="w-[40px] h-[40px] rounded-[5px]">${allPlayList[i].imageView}</div>
                         <div class="flex flex-col ml-[10px] leading-5 sm:block hidden">
-                            <span class="font-[600] text-[15px] sm:text-[18px]">ogunnnsike</span>
-                            <span>usman</span>
+                            <span class="font-[600] text-[15px] sm:text-[18px]">${allPlayList[i].songTitle}</span>
+                            <span>${allPlayList[i].artist}</span>
                         </div>
                         <div class="flex flex-col ml-[10px] leading-5 sm:hidden">
-                            <div class="font-[700] text-[16px] sm:text-[18px]">walking up that hill</div>
-                            <div><span>usman</span><span class=" ml-[10px]">plays</span></div>
+                            <div class="font-[700] text-[16px] sm:text-[18px]">${allPlayList[i].songTitle}</div>
+                            <div><span>${allPlayList[i].artist}</span><span class=" ml-[10px]">${allPlayList[i].plays}</span></div>
                         </div>
                     </div>
-                    <span class="w-[25%] ml-[20px] sm:block hidden">arysk</span>
-                    <span class="w-[28%] sm:block hidden">arya song</span>
-                    <button class="">Delete</button>
+                    <span class="w-[25%] ml-[20px] sm:block hidden">${allPlayList[i].plays}</span>
+                    <span class="w-[28%] sm:block hidden">${allPlayList[i].album}</span>
+                    <button class="" onclick="deletesong(${i})">Delete</button>
                 </div>`;
     }
 }
