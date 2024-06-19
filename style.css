@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: black;
 }
 .svgPlay{
     display: none;
@@ -8,6 +9,25 @@ body{
 .div-songlist:hover .svgPlay{
     display: block;
 }
-.div-drid{
-    
+.div-home{
+    background-color: #121212;
+
+}
+.div-inputSong {
+    background-color: #121212;
+
+}
+.div-inputSong button{
+    background-color: #232323;
+}
+.div-inputSong button:hover{
+    opacity: 0.5;
+}
+.div-inputSong input{
+    background-color: #232323;
+   
+}
+.div-myPlaylist {
+    background-color: #4F4F4F ;
+    #202020
 }
