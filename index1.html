@@ -8,17 +8,6 @@
   <link href="./output.css" rel="stylesheet">
 </head>
 <body>
-
-    <!-- <div class="mx-auto grid  sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 gap-1 bg-zinc-50 p-1">
-        <div class="lg:col-span-3 sm:col-span-12 rounded-lg border border-gray-300 bg-gray-600 py-8 ">
-    
-        </div>
-        <div class="lg:col-span-9 sm:col-span-12 rounded-lg border border-red-300 bg-red-600 py-8">
-       
-        </div>
-    </div> -->
-
-    <!-- component -->
 <nav class="bg-white border border-gray-200 dark:border-gray-700 px-2 md:hidden sm:px-4 py-2.5 rounded dark:bg-gray-800 shadow">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <a href="/" class="flex items-center">
@@ -139,9 +128,9 @@
                           </svg>
                         </button>
                     </div>
-                    <div class="flex items-center text-[14px] font-[700] gap-3">
-                        <a class="px-[20px] py-[5px] bg-blue-400 rounded-[20px]" href="">Explore Premium</a>
-                        <a class="px-[20px] py-[5px] bg-blue-300 rounded-[20px]" href="">Install App</a>
+                    <div class="flex items-center text-[11px] sm:text-[14px] font-[700] gap-3">
+                        <a class="px-[10px] sm:px-[20px] sm:py-[5px] py-[3px] bg-blue-400 rounded-[20px]" href="">Explore Premium</a>
+                        <a class="px-[10px] sm:px-[20px] sm:py-[5px] py-[3px] bg-blue-300 rounded-[20px]" href="">Install App</a>
                         <button class=" bg-black text-white rounded-[50%] h-[30px] w-[30px] text-center flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mx-auto">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
@@ -156,10 +145,9 @@
                     </div>
     
                 </div>
-    
-    
+
                 <div class="w-[95%] mx-auto mt-[6vh] flex">
-                    <div class=" Top-Songs-Global w-[12vw] bg-blue-300 h-[25vh] flex flex-col  items-start">
+                    <div class=" Top-Songs-Global sm:w-[12vw] w-[auto] bg-blue-400 h-[25vh] flex flex-col  items-start">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 mx-auto">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 0 1 9 14.437V9.564Z" />
@@ -175,8 +163,8 @@
                     </div>
                     <div class=" Top-Songs-Global2 flex flex-col items-start ml-[20px] text-white">
                         <span class="text-[14px]">Playlist</span>
-                        <span class="text-[65px] font-[800] leading-10 mt-[17px]">Top Songs-Global</span>
-                        <span class="text-[14px] mt-[25px]">Your weekly update of the most played tracks right now - Global.</span>
+                        <span class="lg:text-[65px] md:text-[50px] text-[30px] font-[800] sm:leading-10 leading-8 mt-[5px] sm:mt-[17px]">Top Songs-Global</span>
+                        <span class="text-[14px] mt-[10px] sm:mt-[25px]">Your weekly update of the most played tracks right now - Global.</span>
                         <div class="text-[14px] font-[600] mt-[5px]">
                             <a class="font-[700]" href="">Spotify</a>
                             <span>. 1,394,646 likes</span>
@@ -188,14 +176,37 @@
             <div class="div-playlist flex flex-col mx-[auto] w-[95%]">
     
                 <div class="flex mt-[20px] justify-between text-white">
-                    <span class="w-[40%]">#  Title</span>
-                    <span class="w-[20%]">Plays</span>
-                    <span class="w-[20%]">Album</span>
-                    <span class="">Delete</span>
+                    <span class="sm:hidden font-[700] text-[18px] w-[40%]">#  Songs</span>
+                    <span class=" sm:block hidden w-[40%]">#  Title</span>
+                    <span class="sm:block hidden w-[20%]">Plays</span>
+                    <span class="sm:block hidden w-[20%]">Album</span>
+                    <span class="font-[700] text-[18px] sm:font-[400] sm:text-[16px]">Delete</span>
                 </div>
                 <div class="div-line bg-white h-[1px] mt-[5px] mb-[10px]"></div>
     
                <div id="showPlaylistDiv">
+                <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
+                    <span class="w-[2%]">1</span>
+                    <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                      </svg>
+                      </button>
+                    <div class="flex items-center sm:w-[40%] w-[80%] ml-[15px]">
+                        <img class="h-[35px] rounded-[5px]" src="./image/snow.jpg" alt="">
+                        <div class="flex flex-col ml-[10px] leading-5 sm:block hidden">
+                            <span class="font-[600] text-[15px] sm:text-[18px]">ogunnnsike</span>
+                            <span>usman</span>
+                        </div>
+                        <div class="flex flex-col ml-[10px] leading-5 sm:hidden">
+                            <div class="font-[700] text-[16px] sm:text-[18px]">walking up that hill</div>
+                            <div><span>usman</span><span class=" ml-[10px]">plays</span></div>
+                        </div>
+                    </div>
+                    <span class="w-[25%] ml-[20px] sm:block hidden">arysk</span>
+                    <span class="w-[28%] sm:block hidden">arya song</span>
+                    <button class="">Delete</button>
+                </div>
     
                </div>
             </div>
