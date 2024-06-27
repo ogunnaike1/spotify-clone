@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #imageDiv {
+        height: 200px;
+        width: 200px;
+        background-color: rgb(192, 192, 239);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Ensures the image fits well */
+    }
+
+    #imageDiv img {
+        max-height: 100%; /* Ensures the image fits within the div */
+        max-width: 100%; /* Ensures the image fits within the div */
+    }
+</style>
+<body>
+    <div id="imageDiv"></div>
+    <input type="file" name="" id="fileInput">
+    <button id="showImageBtn">Show Image</button>
+    
+</body>
+<script>
+document.getElementById('showImageBtn').addEventListener('click', function() {
+    // Get the file input element
+    const input = document.getElementById('fileInput');
+    
+    // Check if a file is selected
+    if (input.files && input.files[0]) {
+        // Create a new FileReader object
+        const reader = new FileReader();
+
+        // Set up the onload event to update the div with the image
+        reader.onload = function(e) {
+            // Create an image element
+            const img = document.createElement('img');
+            img.src = e.target.result; // Set the image source to the file's content
+
+            // Clear the div content and append the new image
+            const imageDiv = document.getElementById('imageDiv');
+            imageDiv.innerHTML = ''; // Clear any existing content
+            imageDiv.appendChild(img); // Append the image to the div
+        }
+
+        // Read the image file as a data URL
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        alert('Please select a file.');
+    }
+});
+
+</script>
+</html>
