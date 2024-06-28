@@ -29,20 +29,14 @@
 </body>
 <script>
  function showImage() {
-    // Get the file input element
-    const input = document.getElementById('fileInput');
-    
-    // Check if a file is selected
+
     if (fileInput.files && fileInput.files[0]) {
-        // Create a new FileReader object
         const reader = new FileReader();
 
-        // Set up the onload event to update the div with the image
         reader.onload = function(e) {
             // Create an image element
             const img = document.createElement('img');
             img.src = e.target.result; // Set the image source to the file's content
-
             // Clear the div content and append the new image
             const imageDiv = document.getElementById('imageDiv');
             imageDiv.innerHTML = ''; // Clear any existing content
