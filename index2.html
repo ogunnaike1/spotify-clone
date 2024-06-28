@@ -24,16 +24,16 @@
 <body>
     <div id="imageDiv"></div>
     <input type="file" name="" id="fileInput">
-    <button id="showImageBtn">Show Image</button>
+    <button id="showImageBtn" onclick="showImage()">Show Image</button>
     
 </body>
 <script>
-document.getElementById('showImageBtn').addEventListener('click', function() {
+ function showImage() {
     // Get the file input element
     const input = document.getElementById('fileInput');
     
     // Check if a file is selected
-    if (input.files && input.files[0]) {
+    if (fileInput.files && fileInput.files[0]) {
         // Create a new FileReader object
         const reader = new FileReader();
 
@@ -54,7 +54,7 @@ document.getElementById('showImageBtn').addEventListener('click', function() {
     } else {
         alert('Please select a file.');
     }
-});
+};
 
 </script>
 </html>
