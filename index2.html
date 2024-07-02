@@ -22,19 +22,40 @@
     }
 </style>
 <body>
+    <input type="text" id="name1">
+    <input type="text" id="name2">
+    <input type="text" id="name3">
+    <button onclick="showThemInDiv()">show them all</button>
+    <div id="showThemAll"></div>
+    <div></div>
+
     <div id="imageDiv"></div>
     <input type="file" name="" id="fileInput">
     <button id="showImageBtn" onclick="showImage()">Show Image</button>
-    
+
+    <div id="audioDiv"></div>
+    <input type="file" name="" id="musicFileInput" accept="audio/*">
+    <button id="showAudioBtn" onclick="showAudio()">Upload Music</button>
+    <button id="playAudioBtn" style="display:none;" onclick="playAudio()">Play Music</button>
+    <button onclick="pushAll()">push all</button>
 </body>
 <script>
- function showImage() {
+    let allFile = [];
 
-    if (fileInput.files && fileInput.files[0]) {
+    function addToList(){
+        let input1 = {
+            name1: name1.value,
+            name2: name2.value,
+            name3: name3.value
+        }
+        allFile.push(input1)
+
+    }
+    function showThemInDiv(){
+   
+        if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
-
         reader.onload = function(e) {
-            // Create an image element
             const img = document.createElement('img');
             img.src = e.target.result; // Set the image source to the file's content
             // Clear the div content and append the new image
@@ -42,13 +63,62 @@
             imageDiv.innerHTML = ''; // Clear any existing content
             imageDiv.appendChild(img); // Append the image to the div
         }
-
         // Read the image file as a data URL
         reader.readAsDataURL(fileInput.files[0]);
     } else {
         alert('Please select a file.');
     }
+
+    }
+
+ function showImage() {
+    // if (fileInput.files && fileInput.files[0]) {
+    //     const reader = new FileReader();
+    //     reader.onload = function(e) {
+    //         const img = document.createElement('img');
+    //         img.src = e.target.result; // Set the image source to the file's content
+    //         // Clear the div content and append the new image
+    //         const imageDiv = document.getElementById('imageDiv');
+    //         imageDiv.innerHTML = ''; // Clear any existing content
+    //         imageDiv.appendChild(img); // Append the image to the div
+    //     }
+    //     // Read the image file as a data URL
+    //     reader.readAsDataURL(fileInput.files[0]);
+    // } else {
+    //     alert('Please select a file.');
+    // }
 };
+
+let audioElement; 
+
+function showAudio() {
+
+    if (musicFileInput.files && musicFileInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            if (!audioElement) {
+                audioElement = document.createElement('audio');
+            }
+            audioElement.src = e.target.result;
+            const audioDiv = document.getElementById('audioDiv');
+            audioDiv.innerHTML = '';
+            audioDiv.appendChild(audioElement);
+            document.getElementById('playAudioBtn').style.display = 'inline-block';
+        }
+        reader.readAsDataURL(musicFileInput.files[0]);
+    } else {
+        alert('Please select a file.');
+    }
+}
+
+function playAudio() {
+    if (audioElement) {
+        audioElement.play();
+    } else {
+        alert('No audio file uploaded to play.');
+    }
+}
 
 </script>
 </html>
