@@ -56,7 +56,7 @@
         if (fileInput.files && fileInput.files[0]) {
       
         reader.onload = function(e) {
-          
+            const img = document.createElement('img');
             img.src = e.target.result; // Set the image source to the file's content
             // Clear the div content and append the new image
             const imageDiv = document.getElementById('imageDiv');
