@@ -54,7 +54,7 @@
     function showThemInDiv(){
    
         if (fileInput.files && fileInput.files[0]) {
-      
+        const reader = new FileReader();
         reader.onload = function(e) {
             const img = document.createElement('img');
             img.src = e.target.result; // Set the image source to the file's content
