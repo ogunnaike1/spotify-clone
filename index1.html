@@ -234,7 +234,7 @@ let allPlayList =[];
     function showPlaylist(){
     showPlaylistDiv.innerHTML = ''
     allPlayList.forEach((elem, i) =>{
-        showPlaylistDiv.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
+        elem.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
                     <span class="w-[2%]">${i + 1}</span>
                     <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
@@ -242,18 +242,18 @@ let allPlayList =[];
                       </svg>
                       </button>
                     <div class="flex items-center sm:w-[40%] w-[80%] ml-[15px]">
-                        <div class="w-[40px] h-[40px] rounded-[5px]">${allPlayList[i].imageView}</div>
+                        <div class="w-[40px] h-[40px] rounded-[5px]">${elem.imageView}</div>
                         <div class="flex flex-col ml-[10px] leading-5 sm:block hidden">
-                            <span class="font-[600] text-[15px] sm:text-[18px]">${allPlayList[i].songTitle}</span>
-                            <span>${allPlayList[i].artist}</span>
+                            <span class="font-[600] text-[15px] sm:text-[18px]">${elem.songTitle}</span>
+                            <span>${elem.artist}</span>
                         </div>
                         <div class="flex flex-col ml-[10px] leading-5 sm:hidden">
-                            <div class="font-[700] text-[16px] sm:text-[18px]">${allPlayList[i].songTitle}</div>
-                            <div><span>${allPlayList[i].artist}</span><span class=" ml-[10px]">${allPlayList[i].plays}</span></div>
+                            <div class="font-[700] text-[16px] sm:text-[18px]">${elem.songTitle}</div>
+                            <div><span>${elem.artist}</span><span class=" ml-[10px]">${elem.plays}</span></div>
                         </div>
                     </div>
-                    <span class="w-[25%] ml-[20px] sm:block hidden">${allPlayList[i].plays}</span>
-                    <span class="w-[28%] sm:block hidden">${allPlayList[i].album}</span>
+                    <span class="w-[25%] ml-[20px] sm:block hidden">${elem.plays}</span>
+                    <span class="w-[28%] sm:block hidden">${elem.album}</span>
                     <button class="" onclick="deletesong(${i})">Delete</button>
                 </div>`;
     });
