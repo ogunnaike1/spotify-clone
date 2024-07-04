@@ -233,7 +233,7 @@ let allPlayList =[];
 
     function showPlaylist(){
     showPlaylistDiv.innerHTML = ''
-    allPlayList.forEach((elem, i) =>{
+    allPlayList.forEach((elem, i) => {
         elem.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
                     <span class="w-[2%]">${i + 1}</span>
                     <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
