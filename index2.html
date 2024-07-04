@@ -30,7 +30,7 @@
     <div></div>
 
     <div id="imageDiv"></div>
-    <input type="file" name="" id="fileInput">
+    <input type="file" name="" id="imageFileInput">
     <button id="showImageBtn" onclick="showImage()">Show Image</button>
 
     <div id="audioDiv"></div>
@@ -70,6 +70,47 @@
     }
 
     }
+
+    // <body>
+    // <input type="text" id="name" />
+    // <input type="file" id="file" />
+
+    // <div id="imageDiv"></div>
+
+    // <button onclick="handleCLick()">Submit</button>
+
+    // <div id="show"></div>
+    // <script>
+    //   let allcharacters = [];
+    //   const nameInput = document.getElementById("name");
+    //   const fileInput = document.getElementById("file");
+
+    //   function handleCLick() {
+    //     const name = nameInput.value;
+    //     const file = fileInput.files[0];
+
+    //     let obj = { name, file };
+
+    //     allcharacters.push(obj);
+    //     displayAllCHanracter();
+    //   }
+
+    //   function displayAllCHanracter() {
+    //     imageDiv.innerHTML = "";
+    //     allcharacters.forEach((elem, i) => {
+    //       const fileInput = elem.file;
+      
+    //       const reader = new FileReader();
+    //       reader.onload = function (e) {
+    //         const img = document.createElement("img");
+    //         img.src = e.target.result;
+    //         const imageDiv = document.getElementById("imageDiv");
+    //         imageDiv.appendChild(img);
+    //         imageDiv.innerHTML += <h1>${elem.name}</h1>;
+    //       };
+    //       reader.readAsDataURL(fileInput);
+    //     });
+    //   }
 
  function showImage() {
     // if (fileInput.files && fileInput.files[0]) {

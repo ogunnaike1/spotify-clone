@@ -101,10 +101,8 @@
                 <input id="inputArtist" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
                 <input id="inputPlays" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
                 <input id="inputAlbum" class="bg-transparent border-2  p-3" type="text" placeholder="Enter song name">
-                <form class="border" id="uploadForm">
-                    <input class="w-[80%]" type="file" id="fileInput" accept="image/*">
-                    <button onclick="addImage()">Upload Image</button>
-                </form>
+                <input class="bg-transparent border-2  p-3" type="file" name="" id="imageFileInput">
+                <input class="bg-transparent border-2  p-3" type="file" name="" id="musicFileInput" accept="audio/*">
                 
                 <button onclick="addPlaylist()" class="bg-red-500 h-[40px] mt-[10px]">Add to playlist</button>
 
@@ -190,30 +188,6 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-
-// document.getElementById('uploadForm').addEventListener('submit', function(event) {
-//     event.preventDefault();
-//     let fileInput = document.getElementById('fileInput');
-//     let file = fileInput.files[0]; 
-//     if (file) {
-//         let reader = new FileReader();
-//         reader.onload = function(e) {
-//             let imagePreview = document.getElementById('imageStatus');
-//             imagePreview.innerHTML = ''; 
-//             let imgElement = document.createElement('img');
-//             imgElement.src = e.target.result;
-//             imgElement.alt = 'Uploaded Image';
-//             imgElement.style.maxWidth = '100%';
-//             imagePreview.appendChild(imgElement);
-//             imagePreview.hidden = false;
-//         };
-//         reader.readAsDataURL(file);
-//     } else {
-//         alert('Please select a file to display.');
-//     }
-// });
-
-
 let allPlayList =[];
     function addPlaylist(){
         let playListObj = {
@@ -221,23 +195,11 @@ let allPlayList =[];
             artist : inputArtist.value,
             plays : inputPlays.value,
             album :inputAlbum.value,
-            imageView : imageStatus.innerHTML
+            imageFile : imageFileInput.files[0],
+            audioFile : musicFileInput.files[0]
         }
-
-        let fileInputs = document.querySelectorAll('.fileInput');
-        fileInputs.forEach(fileInput => {
-            let file = fileInput.files[0];
-            if (file) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    playListObj.images.push(e.target.result);
-                    showPlaylist(); // Update playlist display
-                };
-                reader.readAsDataURL(file);
-            }
-        });
         
-        if(inputSongTitle.value === '' || inputArtist.value === '' || inputPlays.value === '' || inputAlbum.value === '' ){
+        if(inputSongTitle.value === '' || inputArtist.value === '' || inputPlays.value === '' || inputAlbum.value === '' || !imageFileInput.files[0] || !musicFileInput.files[0] ){
         error.style.display ='block'
     }else{
         error.style.display ='none'
@@ -250,7 +212,6 @@ let allPlayList =[];
     } 
 
     }
-
     function deletesong(index){
         allPlayList.splice(index, 1)
         showPlaylist()
@@ -298,7 +259,7 @@ let allPlayList =[];
     }
 }
 
-    </script>
+</script>
 
 
     
