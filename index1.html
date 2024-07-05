@@ -234,7 +234,7 @@ let allPlayList =[];
     function showPlaylist(){
     showPlaylistDiv.innerHTML = ''
     allPlayList.forEach((elem, i) => {
-        elem.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
+        showPlaylistDiv.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
                     <span class="w-[2%]">${i + 1}</span>
                     <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
