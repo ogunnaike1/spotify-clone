@@ -10,6 +10,12 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
 </head>
+<style>
+        #imageDiv img {
+        height: 100%; /* Ensures the image fits within the div */
+        width: 100%; /* Ensures the image fits within the div */
+    }
+</style>
 <body>
 <nav class="bg-black border border-gray-200 dark:border-gray-700 px-2 md:hidden sm:px-4 py-2.5 rounded dark:bg-gray-800 shadow">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
@@ -196,7 +202,7 @@ let allPlayList =[];
             plays : inputPlays.value,
             album :inputAlbum.value,
             imageFile : imageFileInput.files[0],
-            audioFile : musicFileInput.files[0]
+          
         }
         
         if(inputSongTitle.value === '' || inputArtist.value === '' || inputPlays.value === '' || inputAlbum.value === '' || !imageFileInput.files[0] || !musicFileInput.files[0] ){
@@ -234,7 +240,16 @@ let allPlayList =[];
     function showPlaylist(){
     showPlaylistDiv.innerHTML = ''
     allPlayList.forEach((elem, i) => {
-        showPlaylistDiv.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
+        const fileInput = elem.imageFile;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            const imageDiv = document.getElementById("imageDiv");
+            imageDiv.appendChild(img);
+          };
+                reader.readAsDataURL(fileInput);
+                showPlaylistDiv.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
                     <span class="w-[2%]">${i + 1}</span>
                     <button onclick="playMusic()" class='bg-blue-500 absolute left-[2px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgPlay size-6">
@@ -242,7 +257,7 @@ let allPlayList =[];
                       </svg>
                       </button>
                     <div class="flex items-center sm:w-[40%] w-[80%] ml-[15px]">
-                        <div class="w-[40px] h-[40px] rounded-[5px]">${elem.imageView}</div>
+                        <div class="w-[40px] h-[40px] rounded-[5px]" id="imageDiv"></div>
                         <div class="flex flex-col ml-[10px] leading-5 sm:block hidden">
                             <span class="font-[600] text-[15px] sm:text-[18px]">${elem.songTitle}</span>
                             <span>${elem.artist}</span>
@@ -256,6 +271,8 @@ let allPlayList =[];
                     <span class="w-[28%] sm:block hidden">${elem.album}</span>
                     <button class="" onclick="deletesong(${i})">Delete</button>
                 </div>`;
+
+
     });
 }
 
