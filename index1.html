@@ -241,7 +241,12 @@ let allPlayList =[];
     showPlaylistDiv.innerHTML = ''
     allPlayList.forEach((elem, i) => {
         const fileInput = elem.imageFile;
-   
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            const imageDiv = document.getElementById("imageDiv");
+            imageDiv.appendChild(img);
           };
                 reader.readAsDataURL(fileInput);
                 showPlaylistDiv.innerHTML +=  ` <div class="div-songlist relative flex items-center h-[10vh] rounded-[5px]">
