@@ -141,13 +141,7 @@ function showAudio() {
             if (!audioElement) {
                 audioElement = document.createElement('audio');
             }
-            audioElement.src = e.target.result;
-            const audioDiv = document.getElementById('audioDiv');
-            audioDiv.innerHTML = '';
-            audioDiv.appendChild(audioElement);
-            document.getElementById('playAudioBtn').style.display = 'inline-block';
-        }
-        reader.readAsDataURL(musicFileInput.files[0]);
+       
     } else {
         alert('Please select a file.');
     }
