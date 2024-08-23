@@ -141,8 +141,8 @@ function showAudio() {
             if (!audioElement) {
                 audioElement = document.createElement('audio');
             }
-            audioElement.src = e.target.result;
-          
+    
+        }
         reader.readAsDataURL(musicFileInput.files[0]);
     } else {
         alert('Please select a file.');
